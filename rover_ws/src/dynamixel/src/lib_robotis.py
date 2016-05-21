@@ -162,6 +162,15 @@ class Robotis_Servo():
             else:
                 self.settings[ key ] = defaults[ key ]
 
+    def multi_turn(self):
+        '''sets multi-turn mode on'''
+        self.write_address(0x08,[255,15])
+        self.write_address(0x06,[255,15])
+
+    def joint_angle(self):
+        '''sets joint-angle mode on'''
+        self.write_address(0x06,[0,0])
+
     def init_cont_turn(self):
         '''sets CCW angle limit to zero and allows continuous turning (good for wheels).
         After calling this method, simply use 'set_angvel' to command rotation.  This 
@@ -172,7 +181,7 @@ class Robotis_Servo():
     def kill_cont_turn(self):
         '''resets CCW angle limits to allow commands through 'move_angle' again
         '''
-        self.write_address(0x08, [255, 3])
+        self.write_address(0x08, [255, 15])
 
     def is_moving(self):
         ''' returns True if servo is moving.

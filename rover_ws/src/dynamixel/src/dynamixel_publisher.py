@@ -31,6 +31,7 @@ if __name__ == "__main__":
     dyn = lr.USB2Dynamixel_Device('/dev/ttyUSB0',57600)
     flop = lr.Robotis_Servo(dyn, 2, series = 'MX')
     twist = lr.Robotis_Servo(dyn, 1, series = 'MX')
+    twist.multi_turn()
 
     while not rospy.is_shutdown():
         dynpub.r_angles.data[0] = flop.read_angle()#+15.0*math.pi/180.0
