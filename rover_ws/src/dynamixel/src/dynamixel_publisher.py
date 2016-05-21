@@ -29,14 +29,14 @@ if __name__ == "__main__":
     dynpub.r_angles.data.append(0.0)
 
     dyn = lr.USB2Dynamixel_Device('/dev/ttyUSB0',57600)
-    servo2 = lr.Robotis_Servo(dyn, 1, series = 'MX')
-    servo1 = lr.Robotis_Servo(dyn, 2, series = 'MX')
+    flop = lr.Robotis_Servo(dyn, 2, series = 'MX')
+    twist = lr.Robotis_Servo(dyn, 1, series = 'MX')
 
     while not rospy.is_shutdown():
-        dynpub.r_angles.data[0] = servo1.read_angle()#+15.0*math.pi/180.0
-        dynpub.r_angles.data[1] = servo2.read_angle()
+        dynpub.r_angles.data[0] = flop.read_angle()#+15.0*math.pi/180.0
+        dynpub.r_angles.data[1] = twist.read_angle()
         dynpub.pub.publish(dynpub.r_angles)
-        servo1.move_angle(dynpub.c_angles.data[0])
-        servo2.move_angle(dynpub.c_angles.data[1])
+        flop.move_angle(dynpub.c_angles.data[0])
+        twist.move_angle(dynpub.c_angles.data[1])
 
         rate.sleep()

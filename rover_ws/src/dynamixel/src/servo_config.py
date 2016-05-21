@@ -4,14 +4,14 @@ import math
 
 servo_param = {
     1: {                        # Default for new servo.  Please issue 'new_servo.write_id(new_id)' and setup your own home position!
-        'home_encoder': 90,
-        'max_ang': math.radians(360.0),
-        'min_ang': math.radians(-360.0)
+        'home_encoder': 0x7FF,
+        'max_ang': math.radians(180.0),
+        'min_ang': math.radians(-180.0)
        }, 
     2: {                        # Tilting Hokuyo on El-E
-        'home_encoder': 377,
-        'max_ang': math.radians(30.0),
-        'min_ang': math.radians(-30.0)
+        'home_encoder': 0x7FF,
+        'max_ang': math.radians(180.0),
+        'min_ang': math.radians(-180.0)
        }, 
     3: {                        # RFID Antenna Left Tilt
         'home_encoder': 377

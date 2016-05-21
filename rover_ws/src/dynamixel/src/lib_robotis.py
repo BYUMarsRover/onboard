@@ -325,7 +325,7 @@ class Robotis_Servo():
 
     def process_err( self, err ):
         print('the current encoder value is: {}'.format(self.read_encoder()))
-        print('the current angle is: {}'.format(self.read_anlge()))
+        print('the current angle is: {}'.format(self.read_angle()))
         raise RuntimeError('lib_robotis: An error occurred: %d\n' % err)
 
     def receive_reply(self):
