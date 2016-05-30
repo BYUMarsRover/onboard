@@ -39,24 +39,24 @@ Psoc::Psoc() :
 void Psoc::receive(const uint8_t *bytes, ssize_t nbytes)
 {
 
-    received = true;
-    char* output = new char[nbytes];
-    memcpy(output, bytes, nbytes);
+    // received = true;
+    // char* output = new char[nbytes];
+    // memcpy(output, bytes, nbytes);
 
-    if(output[0] == 0xE3)//output[0] == something) //todo: figure out the start byte
-    {
-	rover_msgs::All msg;
-    	msg.q1 = (output[2] << 8 | output[1]);
-    	msg.q2 = (output[4] << 8 | output[3]);
-    	msg.q3 = (output[6] << 8 | output[5]);
-    	msg.q4 = (output[8] << 8 | output[7]);
-    	msg.q5 = (output[10] << 8 | output[9]);
-    	msg.q6 = (output[12] << 8 | output[11]);
-        //rover_msgs::SciFeedback msg;
-        // msg.temp = (output[1] << 8 | output[2]);
-        // msg.humidity = (output[3] << 8 | output[4]);
-    	data_publisher_.publish(msg);
-    }
+    // if(output[0] == 0xE3)//output[0] == something) //todo: figure out the start byte
+    // {
+    // 	rover_msgs::All msg;
+    // 	msg.q1 = (output[2] << 8 | output[1]);
+    // 	msg.q2 = (output[4] << 8 | output[3]);
+    // 	msg.q3 = (output[6] << 8 | output[5]);
+    // 	msg.q4 = (output[8] << 8 | output[7]);
+    // 	msg.q5 = (output[10] << 8 | output[9]);
+    // 	msg.q6 = (output[12] << 8 | output[11]);
+    //     //rover_msgs::SciFeedback msg;
+    //     // msg.temp = (output[1] << 8 | output[2]);
+    //     // msg.humidity = (output[3] << 8 | output[4]);
+    // 	data_publisher_.publish(msg);
+    // }
 }
 
 
