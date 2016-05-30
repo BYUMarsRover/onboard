@@ -21,17 +21,17 @@ class DynPub():
 
 if __name__ == "__main__":
     rospy.init_node('dynamixel_feedback_node',anonymous = True)
-    hz = 15
+    hz = 60.0
     rate = rospy.Rate(hz)
     dynpub = DynPub()
 
     dynpub.r_angles.data.append(0.0)
     dynpub.r_angles.data.append(0.0)
 
-    dyn = lr.USB2Dynamixel_Device('/dev/ttyUSB0',57600)
+    dyn = lr.USB2Dynamixel_Device('/dev/ttyUSB4',57600)
     flop = lr.Robotis_Servo(dyn, 2, series = 'MX')
     twist = lr.Robotis_Servo(dyn, 1, series = 'MX')
-    twist.multi_turn()
+    # twist.multi_turn()
 
     while not rospy.is_shutdown():
         dynpub.r_angles.data[0] = flop.read_angle()#+15.0*math.pi/180.0

@@ -1,0 +1,9 @@
+<launch>
+
+  <include file="$(find rover_launch)/launch/estimator_test.launch"/>
+  
+  <node name="psoc_rover" pkg="psoc_rover" type="psoc_rover_node"> </node>
+
+  <node name="dynamixels" pkg="dynamixel" type="dynamixel_publisher.py"> </node>
+
+</launch>

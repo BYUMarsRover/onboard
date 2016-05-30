@@ -12,7 +12,7 @@ Psoc::Psoc() :
 {
 
     nh_private_.param<std::string>("serial_port", serialName_, "/dev/ttyUSB2");
-    nh_private_.param<int>("baudrate", baudrate_, 9600);
+    nh_private_.param<int>("baudrate", baudrate_, 57600);
 
     std::string fcu_url(serialName_.c_str());
 
