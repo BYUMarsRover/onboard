@@ -2,7 +2,7 @@
 
 import serial
 import rospy
-from rover_msg.msg import All
+from rover_msgs.msg import All, Pololu, SciFeedback
 from std_msgs.msg import UInt8MultiArray
 
 
@@ -19,33 +19,33 @@ class PSOC():
         #
         # total number of bytes = 27
         self.msg = UInt8MultiArray()
-        self.msg.append(0)
-        self.msg.append(0)
-        self.msg.append(0)
-        self.msg.append(0)
-        self.msg.append(0)
-        self.msg.append(0)
-        self.msg.append(0)
-        self.msg.append(0)
-        self.msg.append(0)
-        self.msg.append(0)
-        self.msg.append(0)
-        self.msg.append(0)
-        self.msg.append(0)
-        self.msg.append(0)
-        self.msg.append(0)
-        self.msg.append(0)
-        self.msg.append(0)
-        self.msg.append(0)
-        self.msg.append(0)
-        self.msg.append(0)
-        self.msg.append(0)
-        self.msg.append(0)
-        self.msg.append(0)
-        self.msg.append(0)
-        self.msg.append(0)
-        self.msg.append(0)
-        self.msg.append(0)
+        self.msg.data.append(0)
+        self.msg.data.append(0)
+        self.msg.data.append(0)
+        self.msg.data.append(0)
+        self.msg.data.append(0)
+        self.msg.data.append(0)
+        self.msg.data.append(0)
+        self.msg.data.append(0)
+        self.msg.data.append(0)
+        self.msg.data.append(0)
+        self.msg.data.append(0)
+        self.msg.data.append(0)
+        self.msg.data.append(0)
+        self.msg.data.append(0)
+        self.msg.data.append(0)
+        self.msg.data.append(0)
+        self.msg.data.append(0)
+        self.msg.data.append(0)
+        self.msg.data.append(0)
+        self.msg.data.append(0)
+        self.msg.data.append(0)
+        self.msg.data.append(0)
+        self.msg.data.append(0)
+        self.msg.data.append(0)
+        self.msg.data.append(0)
+        self.msg.data.append(0)
+        self.msg.data.append(0)
 
         # feedback: 0xE3, turret-low, turret-high, shoulder-low, shoulder-high,
         # elbow-low, elbow-high, forearm-low, forearm-high, temperature-low,
