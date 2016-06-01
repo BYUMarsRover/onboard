@@ -104,17 +104,69 @@ class PSOC():
 
     def read_feedback(self):
         # read feedback from psoc here if at least 13 bytes have been received
+	
         if self.ser.inWaiting() >= 13:
+#	    self.pub_arm.publish(self.arm_feedback)
+#	    self.pub_sci.publish(self.science_data)
+#	    while self.ser.inWaiting():
+#		print self.ser.read(1).encode('hex')
+	    
 	    while self.ser.inWaiting() > 0:
 	        if self.ser.read(1).encode('hex') in 'e3':
-	            self.arm_feedback.q1 = ord(self.ser.read(1).decode('string_escape')) | (ord(self.ser.read(1).decode('string_escape')) << 8)
-	            self.arm_feedback.q2 = ord(self.ser.read(1).decode('string_escape')) | (ord(self.ser.read(1).decode('string_escape')) << 8)
-	            self.arm_feedback.q3 = ord(self.ser.read(1).decode('string_escape')) | (ord(self.ser.read(1).decode('string_escape')) << 8)
-	            self.arm_feedback.q4 = ord(self.ser.read(1).decode('string_escape')) | (ord(self.ser.read(1).decode('string_escape')) << 8)
-	            self.science_data.temp = ord(self.ser.read(1).decode('string_escape')) | (ord(self.ser.read(1).decode('string_escape')) << 8)
-	            self.science_data.humidity = ord(self.ser.read(1).decode('string_escape')) | (ord(self.ser.read(1).decode('string_escape')) << 8)
+		    prin
+		    b = self.ser.read(1)
+	            self.arm_feedback.q1 = ord(self.ser.read(2).decode('string_escape'))
+	            self.arm_feedback.q2 = ord(self.ser.read(2).decode('string_escape'))
+	            self.arm_feedback.q3 = ord(self.ser.read(2).decode('string_escape'))
+	            self.arm_feedback.q4 = ord(self.ser.read(2).decode('string_escape'))
+	            self.science_data.temp = ord(self.ser.read(2).decode('string_escape'))
+	            self.science_data.humidity = ord(self.ser.read(2).decode('string_escape'))
 		    self.pub_arm.publish(self.arm_feedback)
 		    self.pub_sci.publish(self.science_data)
+	    
+	    
+    #     if self.ser.inWaiting() >=13:
+#             self.ser.read(1)
+#             self.ser.read(2)
+#             self.ser.read(2)
+#             self.ser.read(2)
+#             self.ser.read(2)
+#             a = self.ser.read(2)
+#             a = self.remove_non_ascii(a)
+#             print a.decode('ascii')
+            
+#             print type(a)
+    
+#             here = a.decode('iso-8859-2')
+#             print type(here)
+#             self.pub_sci.publish(self.science_data)
+	    '''
+	    self.feedback.data = self.ser.read(13)
+	    self.arm_feedback.q1 = self.feedback.data[1] | (self.feedback.data[2] << 8)
+	    self.arm_feedback.q2 = self.feedback.data[3] | (self.feedback.data[4] << 8)
+	    self.arm_feedback.q3 = self.feedback.data[5] | (self.feedback.data[6] << 8)
+	    self.arm_feedback.q4 = self.feedback.data[7] | (self.feedback.data[8] << 8)
+	    self.science_data.temp = self.feedback.data[9] | (self.feedback.data[10] << 8)
+	    self.science_data.humidity = self.feedback.data[11] | (self.feedback.data[12])
+	    self.pub_arm.publish(self.arm_feedback)
+	    self.pub_sci.publish(self.science_data)
+	    '''
+
+#	    self.pub_sci.publish(self.science_data)
+#	    while self.ser.inWaiting() > 0:
+#                if self.ser.read(1) == 0xE3:  # first byte of message
+#                    self.feedback.data.extend(self.ser.read(12))
+#                    self.arm_feedback.q1 = self.feedback[0] | (self.feedback[1] << 8)
+#                    # keep getting arm feedback data
+#                    self.science_data.temp = self.feedback[8] | (self.feedback[9] << 8)
+#                    self.science_data.humidity = self.feedback[10] | (self.feedback[11] << 8)
+#                    # publish science data
+#                    self.pub_sci.publish(self.science_data)
+#                    self.pub_arm.publish(self.arm_feedback)
+#                    # delete data in feedback array
+#                    while len(self.feedback) > 0:
+#                        self.feedback.pop()
+	#self.pub_sci.publish(self.science_data)
 
 
 if __name__ == '__main__':
