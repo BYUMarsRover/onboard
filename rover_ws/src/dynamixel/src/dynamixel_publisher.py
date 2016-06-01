@@ -30,7 +30,9 @@ if __name__ == "__main__":
 
     dyn = lr.USB2Dynamixel_Device('/dev/ttyUSB4',57600)
     flop = lr.Robotis_Servo(dyn, 2, series = 'MX')
+    #flop = flop.write_address(0x0E, [255,3])
     twist = lr.Robotis_Servo(dyn, 1, series = 'MX')
+    #twist = twist.write_address(0x0E, [255,3])
     # twist.multi_turn()
 
     while not rospy.is_shutdown():

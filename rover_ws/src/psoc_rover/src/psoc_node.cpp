@@ -10,7 +10,7 @@
 
 int main(int argc, char** argv)
 {
-  ros::init(argc, argv, "psoc_node");
+  ros::init(argc, argv, "psoc_node_unused");
   ros::NodeHandle nh;
 
   psoc::Psoc psoc;
